@@ -153,6 +153,7 @@ class FormController(BaseController):
         program = await self.program_service.get_program_by_id_service(
             programid, auth.partner_id
         )
+
         if not program.is_portal_form_mapped:
             raise BadRequestError(
                 message="Form submission is not allowed. Portal form is not mapped to this program."

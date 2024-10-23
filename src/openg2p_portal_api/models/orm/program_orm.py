@@ -3,7 +3,17 @@ from typing import List, Optional
 
 from openg2p_fastapi_common.context import dbengine
 from openg2p_fastapi_common.models import BaseORMModelWithId
-from sqlalchemy import DateTime, ForeignKey, String, and_, desc, func, or_, select
+from sqlalchemy import (
+    DateTime,
+    ForeignKey,
+    Integer,
+    String,
+    and_,
+    desc,
+    func,
+    or_,
+    select,
+)
 from sqlalchemy.ext.asyncio import async_sessionmaker
 from sqlalchemy.orm import Mapped, mapped_column, relationship, selectinload
 
@@ -26,6 +36,8 @@ class ProgramORM(BaseORMModelWithId):
     is_reimbursement_program: Mapped[bool] = mapped_column()
     active: Mapped[bool] = mapped_column()
     create_date: Mapped[datetime] = mapped_column(DateTime())
+    company_id: Mapped[int] = mapped_column(Integer)
+    supporting_documents_store: Mapped[int] = mapped_column(Integer)
     membership: Mapped[Optional[List["ProgramMembershipORM"]]] = relationship(
         back_populates="program"
     )

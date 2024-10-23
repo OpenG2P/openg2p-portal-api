@@ -15,6 +15,8 @@ from sqlalchemy import (
 from sqlalchemy.ext.asyncio import async_sessionmaker
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from openg2p_portal_api.models.orm.document_file_orm import DocumentFileORM
+
 from .reg_id_orm import RegIDORM
 
 
@@ -40,6 +42,10 @@ class PartnerORM(BaseORMModelWithId):
     type: Mapped[str] = mapped_column(String(), default="contact")
     is_registrant: Mapped[bool] = mapped_column(Boolean(), default=True)
     is_group: Mapped[bool] = mapped_column(Boolean(), default=False)
+
+    documents: Mapped[List["DocumentFileORM"]] = relationship(
+        "DocumentFileORM", back_populates="partner"
+    )
 
     @classmethod
     async def get_partner_data(cls, id: int):

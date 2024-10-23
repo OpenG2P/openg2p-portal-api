@@ -130,7 +130,7 @@ class AuthController(AuthController):
             ids=partner_ids,
             email=partner_data.email,
             gender=partner_data.gender,
-            # address=partner_data.address,
+            address=partner_data.address,
             bank_ids=partner_bank_accounts,
             addl_name=partner_data.addl_name,
             given_name=partner_data.given_name,
